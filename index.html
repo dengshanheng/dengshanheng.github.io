@@ -318,8 +318,7 @@
       
         
           
-            <hr>
-<p>title: KIF<br>date: 2017-02-07 09:47:21</p>
+            <h2 id="KIF-基础使用"><a href="#KIF-基础使用" class="headerlink" title="KIF 基础使用"></a>KIF 基础使用</h2><p>title: KIF<br>date: 2017-02-07 09:47:21</p>
 <p>注：刚接触KIF,以下为我用到的方法,纯属个人浅层理解</p>
 <h3 id="方法命名"><a href="#方法命名" class="headerlink" title="方法命名"></a>方法命名</h3><p>方法的命名必须以test开头，测试运行时，系统会寻找所有以“test”开头的方法，按照字母顺序运行，我一般以“test00”、“test01”……作为方法命名开头</p>
 <h3 id="API介绍"><a href="#API介绍" class="headerlink" title="API介绍"></a>API介绍</h3><ul>
@@ -375,6 +374,21 @@
 </ul>
 <p>eg.</p>
 <pre><code>[tester scrollViewWithAccessibilityIdentifier:@&quot;TableView&quot; byFractionOfSizeHorizontal:0 vertical:-0.2];
+</code></pre><h4 id="slider设值"><a href="#slider设值" class="headerlink" title="slider设值"></a>slider设值</h4><ul>
+<li>- (void)setValue:(float)value forSliderWithAccessibilityLabel:(NSString *)label;</li>
+</ul>
+<p>eg.</p>
+<pre><code>[tester setValue:2 forSliderWithAccessibilityLabel:@&quot;Slider&quot;];
+</code></pre><h4 id="switch开关"><a href="#switch开关" class="headerlink" title="switch开关"></a>switch开关</h4><ul>
+<li>- (void)setOn:(BOOL)switchIsOn forSwitchWithAccessibilityLabel:(NSString *)label;</li>
+</ul>
+<p>eg.</p>
+<pre><code>[tester setOn:NO forSwitchWithAccessibilityLabel:@&quot;Switch&quot;];
+</code></pre><h4 id="picker"><a href="#picker" class="headerlink" title="picker"></a>picker</h4><ul>
+<li>- (void)selectPickerViewRowWithTitle:(NSString *)title;</li>
+</ul>
+<p>eg.</p>
+<pre><code>[tester selectPickerViewRowWithTitle:@&quot;Charlie&quot;];
 </code></pre><h4 id="文本输入"><a href="#文本输入" class="headerlink" title="文本输入"></a>文本输入</h4><ul>
 <li>- (void)enterText:(NSString <em>)text intoViewWithAccessibilityLabel:(NSString </em>)label;</li>
 </ul>
