@@ -102,7 +102,7 @@ API介绍
 - (void)beforeAll; 
 
 beforeAll 是一个实际上只是在所有测">
-<meta property="og:updated_time" content="2017-02-07T04:18:29.000Z">
+<meta property="og:updated_time" content="2017-02-07T04:30:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title">
 <meta name="twitter:description" content="title: KIFdate: 2017-02-07 09:47:21
@@ -392,7 +392,23 @@ beforeAll 是一个实际上只是在所有测">
 </ul>
 <p>eg.</p>
 <pre><code>[tester scrollViewWithAccessibilityIdentifier:@&quot;TableView&quot; byFractionOfSizeHorizontal:0 vertical:-0.2];
-</code></pre>
+</code></pre><p>#####文本输入</p>
+<ul>
+<li>- (void)enterText:(NSString <em>)text intoViewWithAccessibilityLabel:(NSString </em>)label;</li>
+</ul>
+<p>eg.</p>
+<pre><code>[tester enterText:@&quot;内容&quot; intoViewWithAccessibilityLabel:@&quot;TextField&quot;];
+</code></pre><p>#####等待视图出现</p>
+<ul>
+<li>- (UIView <em>)waitForViewWithAccessibilityLabel:(NSString </em>)label;</li>
+</ul>
+<p>eg.</p>
+<pre><code>[tester waitForViewWithAccessibilityLabel:@&quot;TextField&quot;];
+</code></pre><p>#####访问权限允许</p>
+<ul>
+<li>- (BOOL)acknowledgeSystemAlert;</li>
+</ul>
+
       
     </div>
 

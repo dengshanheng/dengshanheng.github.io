@@ -377,7 +377,23 @@
 </ul>
 <p>eg.</p>
 <pre><code>[tester scrollViewWithAccessibilityIdentifier:@&quot;TableView&quot; byFractionOfSizeHorizontal:0 vertical:-0.2];
-</code></pre>
+</code></pre><p>#####文本输入</p>
+<ul>
+<li>- (void)enterText:(NSString <em>)text intoViewWithAccessibilityLabel:(NSString </em>)label;</li>
+</ul>
+<p>eg.</p>
+<pre><code>[tester enterText:@&quot;内容&quot; intoViewWithAccessibilityLabel:@&quot;TextField&quot;];
+</code></pre><p>#####等待视图出现</p>
+<ul>
+<li>- (UIView <em>)waitForViewWithAccessibilityLabel:(NSString </em>)label;</li>
+</ul>
+<p>eg.</p>
+<pre><code>[tester waitForViewWithAccessibilityLabel:@&quot;TextField&quot;];
+</code></pre><p>#####访问权限允许</p>
+<ul>
+<li>- (BOOL)acknowledgeSystemAlert;</li>
+</ul>
+
           
         
       
