@@ -84,34 +84,34 @@
 
 
 
-<meta name="description" content="title: KIF 基础使用date: 2017-02-07 09:47:21
+<meta name="description" content="title: KIFdate: 2017-02-07 09:47:21
 注：刚接触KIF,以下为我用到的方法,纯属个人浅层理解
 方法命名方法的命名必须以test开头，测试运行时，系统会寻找所有以“test”开头的方法，按照字母顺序运行，我一般以“test00”、“test01”……作为方法命名开头
 API介绍
 - (void)beforeAll; 
 
-beforeAll 是一个实际上只">
+beforeAll 是一个实际上只是在所有测">
 <meta property="og:type" content="article">
 <meta property="og:title">
 <meta property="og:url" content="http://yoursite.com/2017/02/07/KIF/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="title: KIF 基础使用date: 2017-02-07 09:47:21
+<meta property="og:description" content="title: KIFdate: 2017-02-07 09:47:21
 注：刚接触KIF,以下为我用到的方法,纯属个人浅层理解
 方法命名方法的命名必须以test开头，测试运行时，系统会寻找所有以“test”开头的方法，按照字母顺序运行，我一般以“test00”、“test01”……作为方法命名开头
 API介绍
 - (void)beforeAll; 
 
-beforeAll 是一个实际上只">
-<meta property="og:updated_time" content="2017-02-07T04:13:18.000Z">
+beforeAll 是一个实际上只是在所有测">
+<meta property="og:updated_time" content="2017-02-07T04:18:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title">
-<meta name="twitter:description" content="title: KIF 基础使用date: 2017-02-07 09:47:21
+<meta name="twitter:description" content="title: KIFdate: 2017-02-07 09:47:21
 注：刚接触KIF,以下为我用到的方法,纯属个人浅层理解
 方法命名方法的命名必须以test开头，测试运行时，系统会寻找所有以“test”开头的方法，按照字母顺序运行，我一般以“test00”、“test01”……作为方法命名开头
 API介绍
 - (void)beforeAll; 
 
-beforeAll 是一个实际上只">
+beforeAll 是一个实际上只是在所有测">
 
 
 
@@ -334,7 +334,7 @@ beforeAll 是一个实际上只">
 
       
         <hr>
-<p>title: KIF 基础使用<br>date: 2017-02-07 09:47:21</p>
+<p>title: KIF<br>date: 2017-02-07 09:47:21</p>
 <p>注：刚接触KIF,以下为我用到的方法,纯属个人浅层理解</p>
 <h3 id="方法命名"><a href="#方法命名" class="headerlink" title="方法命名"></a>方法命名</h3><p>方法的命名必须以test开头，测试运行时，系统会寻找所有以“test”开头的方法，按照字母顺序运行，我一般以“test00”、“test01”……作为方法命名开头</p>
 <h3 id="API介绍"><a href="#API介绍" class="headerlink" title="API介绍"></a>API介绍</h3><ul>
@@ -352,10 +352,10 @@ beforeAll 是一个实际上只">
 <p>它使用在给定的可访问标签上模拟在视图上的触击. 在大多数情况下，可访问标签都是匹配诸如按钮这种组件的可视的文本标签，否则则需要手动设置访问标签</p>
 <p>eg.</p>
 <p>设置访问标签</p>
-<p>[btn setAccessibilityLabel:@”test”];</p>
-<p>设置视图点击</p>
-<p>[tester tapViewWithAccessibilityLabel:@”test”];</p>
-<h5 id="tableview相关测试"><a href="#tableview相关测试" class="headerlink" title="tableview相关测试"></a>tableview相关测试</h5><p>######测试row的点击方法有：</p>
+<pre><code>[btn setAccessibilityLabel:@&quot;test&quot;];
+</code></pre><p>设置视图点击</p>
+<pre><code>[tester tapViewWithAccessibilityLabel:@&quot;test&quot;];
+</code></pre><h5 id="tableview相关测试"><a href="#tableview相关测试" class="headerlink" title="tableview相关测试"></a>tableview相关测试</h5><p>######测试row的点击方法有：</p>
 <ul>
 <li>- (void)tapRowAtIndexPath:(NSIndexPath <em>)indexPath inTableViewWithAccessibilityIdentifier:(NSString </em>)identifier;</li>
 </ul>
@@ -385,14 +385,14 @@ beforeAll 是一个实际上只">
 <li>- (void)pullToRefreshViewWithAccessibilityLabel:(NSString *)label pullDownDuration:(KIFPullToRefreshTiming) pullDownDuration;</li>
 </ul>
 <p>eg.</p>
-<p>[tester pullToRefreshViewWithAccessibilityLabel:@”TableView” pullDownDuration:KIFPullToRefreshInAboutOneSecond];</p>
-<p>######测试滑动方法：<br>horizontalFraction:水平方向 verticalFraction:垂直方向<br>数值为-1~1，越接近0，速度越慢</p>
+<pre><code>[tester pullToRefreshViewWithAccessibilityLabel:@&quot;TableView&quot; pullDownDuration:KIFPullToRefreshInAboutOneSecond];
+</code></pre><p>######测试滑动方法：<br>horizontalFraction:水平方向 verticalFraction:垂直方向<br>数值为-1~1，越接近0，速度越慢</p>
 <ul>
 <li>- (void)scrollViewWithAccessibilityIdentifier:(NSString *)identifier byFractionOfSizeHorizontal:(CGFloat)horizontalFraction vertical:(CGFloat)verticalFraction;</li>
 </ul>
 <p>eg.</p>
-<p>[tester scrollViewWithAccessibilityIdentifier:@”TableView” byFractionOfSizeHorizontal:0 vertical:-0.2];</p>
-
+<pre><code>[tester scrollViewWithAccessibilityIdentifier:@&quot;TableView&quot; byFractionOfSizeHorizontal:0 vertical:-0.2];
+</code></pre>
       
     </div>
 
