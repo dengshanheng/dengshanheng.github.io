@@ -340,7 +340,7 @@
 <pre><code>[btn setAccessibilityLabel:@&quot;test&quot;];
 </code></pre><p>设置视图点击</p>
 <pre><code>[tester tapViewWithAccessibilityLabel:@&quot;test&quot;];
-</code></pre><h4 id="tableview相关测试"><a href="#tableview相关测试" class="headerlink" title="tableview相关测试"></a>tableview相关测试</h4><h5 id="测试row的点击方法有："><a href="#测试row的点击方法有：" class="headerlink" title="测试row的点击方法有："></a>测试row的点击方法有：</h5><ul>
+</code></pre><h4 id="tableview相关测试"><a href="#tableview相关测试" class="headerlink" title="tableview相关测试"></a>tableview相关测试</h4><h5 id="测试row的点击："><a href="#测试row的点击：" class="headerlink" title="测试row的点击："></a>测试row的点击：</h5><ul>
 <li>- (void)tapRowAtIndexPath:(NSIndexPath <em>)indexPath inTableViewWithAccessibilityIdentifier:(NSString </em>)identifier;</li>
 </ul>
 <p>eg.</p>
@@ -364,12 +364,12 @@
 
 以下方法为等待视图出现，默认超时未10s
 - (void)waitForAccessibilityElement:(UIAccessibilityElement **)element view:(out UIView **)view withIdentifier:(NSString *)identifier tappable:(BOOL)mustBeTappable;
-</code></pre><h5 id="测试刷新方法："><a href="#测试刷新方法：" class="headerlink" title="测试刷新方法："></a>测试刷新方法：</h5><ul>
+</code></pre><h5 id="测试刷新："><a href="#测试刷新：" class="headerlink" title="测试刷新："></a>测试刷新：</h5><ul>
 <li>- (void)pullToRefreshViewWithAccessibilityLabel:(NSString *)label pullDownDuration:(KIFPullToRefreshTiming) pullDownDuration;</li>
 </ul>
 <p>eg.</p>
 <pre><code>[tester pullToRefreshViewWithAccessibilityLabel:@&quot;TableView&quot; pullDownDuration:KIFPullToRefreshInAboutOneSecond];
-</code></pre><h5 id="测试滑动方法："><a href="#测试滑动方法：" class="headerlink" title="测试滑动方法："></a>测试滑动方法：</h5><p>horizontalFraction:水平方向 verticalFraction:垂直方向<br>数值为-1~1，越接近0，速度越慢</p>
+</code></pre><h5 id="测试滑动："><a href="#测试滑动：" class="headerlink" title="测试滑动："></a>测试滑动：</h5><p>horizontalFraction:水平方向 verticalFraction:垂直方向<br>数值为-1~1，越接近0，速度越慢</p>
 <ul>
 <li>- (void)scrollViewWithAccessibilityIdentifier:(NSString *)identifier byFractionOfSizeHorizontal:(CGFloat)horizontalFraction vertical:(CGFloat)verticalFraction;</li>
 </ul>

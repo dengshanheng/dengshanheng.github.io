@@ -102,7 +102,7 @@ API介绍
 - (void)beforeAll; 
 
 beforeAll 是一个实际上只是在所有测">
-<meta property="og:updated_time" content="2017-02-07T04:40:18.000Z">
+<meta property="og:updated_time" content="2017-02-07T06:07:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title">
 <meta name="twitter:description" content="title: KIFdate: 2017-02-07 09:47:21
@@ -355,7 +355,7 @@ beforeAll 是一个实际上只是在所有测">
 <pre><code>[btn setAccessibilityLabel:@&quot;test&quot;];
 </code></pre><p>设置视图点击</p>
 <pre><code>[tester tapViewWithAccessibilityLabel:@&quot;test&quot;];
-</code></pre><h4 id="tableview相关测试"><a href="#tableview相关测试" class="headerlink" title="tableview相关测试"></a>tableview相关测试</h4><h5 id="测试row的点击方法有："><a href="#测试row的点击方法有：" class="headerlink" title="测试row的点击方法有："></a>测试row的点击方法有：</h5><ul>
+</code></pre><h4 id="tableview相关测试"><a href="#tableview相关测试" class="headerlink" title="tableview相关测试"></a>tableview相关测试</h4><h5 id="测试row的点击："><a href="#测试row的点击：" class="headerlink" title="测试row的点击："></a>测试row的点击：</h5><ul>
 <li>- (void)tapRowAtIndexPath:(NSIndexPath <em>)indexPath inTableViewWithAccessibilityIdentifier:(NSString </em>)identifier;</li>
 </ul>
 <p>eg.</p>
@@ -379,12 +379,12 @@ beforeAll 是一个实际上只是在所有测">
 
 以下方法为等待视图出现，默认超时未10s
 - (void)waitForAccessibilityElement:(UIAccessibilityElement **)element view:(out UIView **)view withIdentifier:(NSString *)identifier tappable:(BOOL)mustBeTappable;
-</code></pre><h5 id="测试刷新方法："><a href="#测试刷新方法：" class="headerlink" title="测试刷新方法："></a>测试刷新方法：</h5><ul>
+</code></pre><h5 id="测试刷新："><a href="#测试刷新：" class="headerlink" title="测试刷新："></a>测试刷新：</h5><ul>
 <li>- (void)pullToRefreshViewWithAccessibilityLabel:(NSString *)label pullDownDuration:(KIFPullToRefreshTiming) pullDownDuration;</li>
 </ul>
 <p>eg.</p>
 <pre><code>[tester pullToRefreshViewWithAccessibilityLabel:@&quot;TableView&quot; pullDownDuration:KIFPullToRefreshInAboutOneSecond];
-</code></pre><h5 id="测试滑动方法："><a href="#测试滑动方法：" class="headerlink" title="测试滑动方法："></a>测试滑动方法：</h5><p>horizontalFraction:水平方向 verticalFraction:垂直方向<br>数值为-1~1，越接近0，速度越慢</p>
+</code></pre><h5 id="测试滑动："><a href="#测试滑动：" class="headerlink" title="测试滑动："></a>测试滑动：</h5><p>horizontalFraction:水平方向 verticalFraction:垂直方向<br>数值为-1~1，越接近0，速度越慢</p>
 <ul>
 <li>- (void)scrollViewWithAccessibilityIdentifier:(NSString *)identifier byFractionOfSizeHorizontal:(CGFloat)horizontalFraction vertical:(CGFloat)verticalFraction;</li>
 </ul>
@@ -530,7 +530,7 @@ beforeAll 是一个实际上只是在所有测">
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法命名"><span class="nav-number">1.</span> <span class="nav-text">方法命名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#API介绍"><span class="nav-number">2.</span> <span class="nav-text">API介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#视图点击"><span class="nav-number">2.1.</span> <span class="nav-text">视图点击</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tableview相关测试"><span class="nav-number">2.2.</span> <span class="nav-text">tableview相关测试</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#测试row的点击方法有："><span class="nav-number">2.2.1.</span> <span class="nav-text">测试row的点击方法有：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#测试刷新方法："><span class="nav-number">2.2.2.</span> <span class="nav-text">测试刷新方法：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#测试滑动方法："><span class="nav-number">2.2.3.</span> <span class="nav-text">测试滑动方法：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文本输入"><span class="nav-number">2.3.</span> <span class="nav-text">文本输入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#等待视图出现"><span class="nav-number">2.4.</span> <span class="nav-text">等待视图出现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#访问权限允许"><span class="nav-number">2.5.</span> <span class="nav-text">访问权限允许</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法命名"><span class="nav-number">1.</span> <span class="nav-text">方法命名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#API介绍"><span class="nav-number">2.</span> <span class="nav-text">API介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#视图点击"><span class="nav-number">2.1.</span> <span class="nav-text">视图点击</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tableview相关测试"><span class="nav-number">2.2.</span> <span class="nav-text">tableview相关测试</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#测试row的点击："><span class="nav-number">2.2.1.</span> <span class="nav-text">测试row的点击：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#测试刷新："><span class="nav-number">2.2.2.</span> <span class="nav-text">测试刷新：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#测试滑动："><span class="nav-number">2.2.3.</span> <span class="nav-text">测试滑动：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文本输入"><span class="nav-number">2.3.</span> <span class="nav-text">文本输入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#等待视图出现"><span class="nav-number">2.4.</span> <span class="nav-text">等待视图出现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#访问权限允许"><span class="nav-number">2.5.</span> <span class="nav-text">访问权限允许</span></a></li></ol></li></ol></div>
             
 
           </div>
