@@ -340,8 +340,7 @@
 <pre><code>[btn setAccessibilityLabel:@&quot;test&quot;];
 </code></pre><p>设置视图点击</p>
 <pre><code>[tester tapViewWithAccessibilityLabel:@&quot;test&quot;];
-</code></pre><h4 id="tableview相关测试"><a href="#tableview相关测试" class="headerlink" title="tableview相关测试"></a>tableview相关测试</h4><p>#####测试row的点击方法有：</p>
-<ul>
+</code></pre><h4 id="tableview相关测试"><a href="#tableview相关测试" class="headerlink" title="tableview相关测试"></a>tableview相关测试</h4><h5 id="测试row的点击方法有："><a href="#测试row的点击方法有：" class="headerlink" title="测试row的点击方法有："></a>测试row的点击方法有：</h5><ul>
 <li>- (void)tapRowAtIndexPath:(NSIndexPath <em>)indexPath inTableViewWithAccessibilityIdentifier:(NSString </em>)identifier;</li>
 </ul>
 <p>eg.</p>
@@ -365,32 +364,28 @@
 
 以下方法为等待视图出现，默认超时未10s
 - (void)waitForAccessibilityElement:(UIAccessibilityElement **)element view:(out UIView **)view withIdentifier:(NSString *)identifier tappable:(BOOL)mustBeTappable;
-</code></pre><p>#####测试刷新方法：</p>
-<ul>
+</code></pre><h5 id="测试刷新方法："><a href="#测试刷新方法：" class="headerlink" title="测试刷新方法："></a>测试刷新方法：</h5><ul>
 <li>- (void)pullToRefreshViewWithAccessibilityLabel:(NSString *)label pullDownDuration:(KIFPullToRefreshTiming) pullDownDuration;</li>
 </ul>
 <p>eg.</p>
 <pre><code>[tester pullToRefreshViewWithAccessibilityLabel:@&quot;TableView&quot; pullDownDuration:KIFPullToRefreshInAboutOneSecond];
-</code></pre><p>#####测试滑动方法：<br>horizontalFraction:水平方向 verticalFraction:垂直方向<br>数值为-1~1，越接近0，速度越慢</p>
+</code></pre><h5 id="测试滑动方法："><a href="#测试滑动方法：" class="headerlink" title="测试滑动方法："></a>测试滑动方法：</h5><p>horizontalFraction:水平方向 verticalFraction:垂直方向<br>数值为-1~1，越接近0，速度越慢</p>
 <ul>
 <li>- (void)scrollViewWithAccessibilityIdentifier:(NSString *)identifier byFractionOfSizeHorizontal:(CGFloat)horizontalFraction vertical:(CGFloat)verticalFraction;</li>
 </ul>
 <p>eg.</p>
 <pre><code>[tester scrollViewWithAccessibilityIdentifier:@&quot;TableView&quot; byFractionOfSizeHorizontal:0 vertical:-0.2];
-</code></pre><p>####文本输入</p>
-<ul>
+</code></pre><h4 id="文本输入"><a href="#文本输入" class="headerlink" title="文本输入"></a>文本输入</h4><ul>
 <li>- (void)enterText:(NSString <em>)text intoViewWithAccessibilityLabel:(NSString </em>)label;</li>
 </ul>
 <p>eg.</p>
 <pre><code>[tester enterText:@&quot;内容&quot; intoViewWithAccessibilityLabel:@&quot;TextField&quot;];
-</code></pre><p>####等待视图出现</p>
-<ul>
+</code></pre><h4 id="等待视图出现"><a href="#等待视图出现" class="headerlink" title="等待视图出现"></a>等待视图出现</h4><ul>
 <li>- (UIView <em>)waitForViewWithAccessibilityLabel:(NSString </em>)label;</li>
 </ul>
 <p>eg.</p>
 <pre><code>[tester waitForViewWithAccessibilityLabel:@&quot;TextField&quot;];
-</code></pre><p>####访问权限允许</p>
-<ul>
+</code></pre><h4 id="访问权限允许"><a href="#访问权限允许" class="headerlink" title="访问权限允许"></a>访问权限允许</h4><ul>
 <li>- (BOOL)acknowledgeSystemAlert;</li>
 </ul>
 
