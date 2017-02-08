@@ -84,34 +84,13 @@
 
 
 
-<meta name="description" content="项目新增夜间模式，实现的方法有很多，在这里记录一下我的实现方法
-创建plist文件command+N –&amp;gt; Property List
-该文件我命名为ThemeMode，最终的到ThemeMode.plist文件
-然后在plist文件中添加如下内容，key为色值命名，value为对应色值
-&amp;lt;dict&amp;gt;
-    &amp;lt;key&amp;gt;Dark&amp;lt;/key&amp;gt;
-    &amp;lt">
 <meta property="og:type" content="article">
-<meta property="og:title" content="wait_个人博客">
-<meta property="og:url" content="http://yoursite.com/2017/02/08/夜间模式实现/index.html">
+<meta property="og:title" content="test2">
+<meta property="og:url" content="http://yoursite.com/2017/02/08/test2/index.html">
 <meta property="og:site_name" content="wait_个人博客">
-<meta property="og:description" content="项目新增夜间模式，实现的方法有很多，在这里记录一下我的实现方法
-创建plist文件command+N –&amp;gt; Property List
-该文件我命名为ThemeMode，最终的到ThemeMode.plist文件
-然后在plist文件中添加如下内容，key为色值命名，value为对应色值
-&amp;lt;dict&amp;gt;
-    &amp;lt;key&amp;gt;Dark&amp;lt;/key&amp;gt;
-    &amp;lt">
-<meta property="og:updated_time" content="2017-02-08T10:13:23.000Z">
+<meta property="og:updated_time" content="2017-02-08T10:15:11.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="wait_个人博客">
-<meta name="twitter:description" content="项目新增夜间模式，实现的方法有很多，在这里记录一下我的实现方法
-创建plist文件command+N –&amp;gt; Property List
-该文件我命名为ThemeMode，最终的到ThemeMode.plist文件
-然后在plist文件中添加如下内容，key为色值命名，value为对应色值
-&amp;lt;dict&amp;gt;
-    &amp;lt;key&amp;gt;Dark&amp;lt;/key&amp;gt;
-    &amp;lt">
+<meta name="twitter:title" content="test2">
 
 
 
@@ -139,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/02/08/夜间模式实现/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/02/08/test2/"/>
 
 
 
 
 
-  <title>  | wait_个人博客 </title>
+  <title> test2 | wait_个人博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -258,7 +237,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/08/夜间模式实现/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/08/test2/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="wait_">
@@ -282,7 +261,7 @@
             
             
               
-                
+                test2
               
             
           </h1>
@@ -297,7 +276,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-08T18:04:38+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-08T18:15:11+08:00">
                 2017-02-08
               </time>
             
@@ -333,87 +312,7 @@
       
 
       
-        <p>项目新增夜间模式，实现的方法有很多，在这里记录一下我的实现方法</p>
-<h4 id="创建plist文件"><a href="#创建plist文件" class="headerlink" title="创建plist文件"></a>创建plist文件</h4><p>command+N –&gt; Property List</p>
-<p>该文件我命名为ThemeMode，最终的到ThemeMode.plist文件</p>
-<p>然后在plist文件中添加如下内容，key为色值命名，value为对应色值</p>
-<pre><code>&lt;dict&gt;
-    &lt;key&gt;Dark&lt;/key&gt;
-    &lt;dict&gt;
-        &lt;key&gt;Title&lt;/key&gt;
-        &lt;string&gt;0x999999&lt;/string&gt;
-    &lt;/dict&gt;
-    &lt;key&gt;Light&lt;/key&gt;
-    &lt;dict&gt;
-        &lt;key&gt;Title&lt;/key&gt;
-        &lt;string&gt;0x262626&lt;/string&gt;
-    &lt;/dict&gt;
-&lt;/dict&gt;
-</code></pre><h4 id="创建主题管理类"><a href="#创建主题管理类" class="headerlink" title="创建主题管理类"></a>创建主题管理类</h4><p>这里我创建一个名为ThemeManager的管理类</p>
-<p>直接贴代码</p>
-<p>ThemeManager.h文件</p>
-<pre><code>#import &lt;Foundation/Foundation.h&gt;
-
-@interface ThemeManager : NSObject
-
-@property (nonatomic, strong) NSDictionary *themeData;
-
-+ (instancetype)sharedThemeManager;
-
-- (void)setThemeMode:(BOOL)isLight;
-
-@end
-</code></pre><p>ThemeManager.m文件</p>
-<pre><code>#import &quot;ThemeManager.h&quot;
-#import &quot;UserDefaultKeys.h&quot;
-
-@implementation ThemeManager
-
-//读取plist文件
-- (NSDictionary *)themeData
-{
-    if (!_themeData)
-    {
-        NSString *plistPath = [[NSBundle mainBundle] pathForResource:@&quot;ThemeMode&quot; ofType:@&quot;plist&quot;];
-        NSDictionary *data = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
-        //获取当前主题下所有key和value
-        _themeData = [data objectForKey:[kUserDefault objectForKey:kThemeMode]];
-    }
-
-    return _themeData;
-}
-
-//单例
-+ (instancetype)sharedThemeManager
-{
-    static ThemeManager *themeManager = nil;
-    static dispatch_once_t oncePredicate;
-    dispatch_once(&amp;oncePredicate, ^{
-        themeManager = [[self alloc] init];
-    });
-
-    return themeManager;
-}
-
-//设置主题
-- (void)setThemeMode:(BOOL)isLight
-{
-    [kUserDefault setObject:isLight ? @&quot;Light&quot; : @&quot;Dark&quot; forKey:kThemeMode];
-    self.themeData = nil;
-}
-
-@end
-</code></pre><h4 id="扩展UIColor"><a href="#扩展UIColor" class="headerlink" title="扩展UIColor"></a>扩展UIColor</h4><p>在扩展UIColor的文件里，编写方法如</p>
-<pre><code>+ (UIColor *)titleColor
-{
-    //获取对应色值
-    NSString *hexValueStr = [[ThemeManager sharedThemeManager].themeData objectForKey:@&quot;Title&quot;];
-    return [self colorWithHexColorString:hexValueStr];
-}
-</code></pre><p>其中key对应plist文件的key</p>
-<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>直接调用UIColor的扩展方法即可<br>eg.</p>
-<pre><code>titleLabel.textColor = [UIColor titleColor];
-</code></pre>
+        
       
     </div>
 
@@ -439,8 +338,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/08/KIF基础使用/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2017/02/08/test1/" rel="next" title="test1">
+                <i class="fa fa-chevron-left"></i> test1
               </a>
             
           </div>
@@ -448,10 +347,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/08/test1/" rel="prev" title="test1">
-                test1 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -498,17 +393,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.JPG"
@@ -550,22 +436,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建plist文件"><span class="nav-number">1.</span> <span class="nav-text">创建plist文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建主题管理类"><span class="nav-number">2.</span> <span class="nav-text">创建主题管理类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#扩展UIColor"><span class="nav-number">3.</span> <span class="nav-text">扩展UIColor</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用"><span class="nav-number">4.</span> <span class="nav-text">使用</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
     </div>
