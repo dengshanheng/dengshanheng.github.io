@@ -84,13 +84,12 @@
 
 
 
-<meta property="og:type" content="article">
-<meta property="og:title" content="夜间模式实现">
-<meta property="og:url" content="http://yoursite.com/2017/02/08/夜间模式实现/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="wait_个人博客">
+<meta property="og:url" content="http://yoursite.com/index.html">
 <meta property="og:site_name" content="wait_个人博客">
-<meta property="og:updated_time" content="2017-02-08T09:37:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="夜间模式实现">
+<meta name="twitter:title" content="wait_个人博客">
 
 
 
@@ -118,13 +117,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/02/08/夜间模式实现/"/>
+  <link rel="canonical" href="http://yoursite.com/"/>
 
 
 
 
 
-  <title> 夜间模式实现 | wait_个人博客 </title>
+  <title> wait_个人博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -145,7 +144,9 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container one-collumn sidebar-position-left 
+   page-home 
+ ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -226,9 +227,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
 
@@ -237,7 +238,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/08/夜间模式实现/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/08/KIF基础使用/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="wait_">
@@ -261,7 +262,10 @@
             
             
               
-                夜间模式实现
+                
+                <a class="post-title-link" href="/2017/02/08/KIF基础使用/" itemprop="url">
+                  未命名
+                </a>
               
             
           </h1>
@@ -276,7 +280,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-08T17:37:10+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-08T17:54:03+08:00">
                 2017-02-08
               </time>
             
@@ -313,20 +317,117 @@
 
       
         
+          
+            <p>注：刚接触KIF,以下为我用到的方法,纯属个人浅层理解</p>
+<h3 id="方法命名"><a href="#方法命名" class="headerlink" title="方法命名"></a>方法命名</h3><p>方法的命名必须以test开头，测试运行时，系统会寻找所有以“test”开头的方法，按照字母顺序运行，我一般以“test00”、“test01”……作为方法命名开头</p>
+<h3 id="API介绍"><a href="#API介绍" class="headerlink" title="API介绍"></a>API介绍</h3><ul>
+<li>- (void)beforeAll; </li>
+</ul>
+<p>beforeAll 是一个实际上只是在所有测试运行之前被调用一次的特殊方法. 你可以为你这里运行的测试设置任何实体变量和初始化条件.</p>
+<ul>
+<li>- (void)afterAll;</li>
+</ul>
+<p>afterAll 是在所有测试运行完成后被调用一次的特殊方法</p>
+<h4 id="视图点击"><a href="#视图点击" class="headerlink" title="视图点击"></a>视图点击</h4><p>最常用的方法为：</p>
+<ul>
+<li>- (void)tapViewWithAccessibilityLabel:(NSString *)label;</li>
+</ul>
+<p>它使用在给定的可访问标签上模拟在视图上的触击. 在大多数情况下，可访问标签都是匹配诸如按钮这种组件的可视的文本标签，否则则需要手动设置访问标签</p>
+<p>eg.</p>
+<p>设置访问标签</p>
+<pre><code>[btn setAccessibilityLabel:@&quot;test&quot;];
+</code></pre><p>设置视图点击</p>
+<pre><code>[tester tapViewWithAccessibilityLabel:@&quot;test&quot;];
+</code></pre><h4 id="tableview相关测试"><a href="#tableview相关测试" class="headerlink" title="tableview相关测试"></a>tableview相关测试</h4><h5 id="测试row的点击"><a href="#测试row的点击" class="headerlink" title="测试row的点击"></a>测试row的点击</h5><ul>
+<li>- (void)tapRowAtIndexPath:(NSIndexPath <em>)indexPath inTableViewWithAccessibilityIdentifier:(NSString </em>)identifier;</li>
+</ul>
+<p>eg.</p>
+<pre><code>- (void)testTapRow
+{
+    NSIndexPath *cellPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    [tester tapRowAtIndexPath:cellPath inTableViewWithAccessibilityIdentifier:@&quot;TableView&quot;];
+}
+</code></pre><ul>
+<li>- (void)tapRowAtIndexPath:(NSIndexPath <em>)indexPath inTableView:(UITableView </em>)tableView;</li>
+</ul>
+<p>eg.</p>
+<pre><code>- (void)testTapRow
+{
+    UITableView *tableView;
+    [tester waitForAccessibilityElement:NULL view:&amp;tableView withIdentifier:@&quot;TableView&quot; tappable:NO];
+    [tester waitForAnimationsToFinish];
+    NSIndexPath *cellPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    [tester tapRowAtIndexPath:cellPath inTableView:tableView];
+}
+
+以下方法为等待视图出现，默认超时未10s
+- (void)waitForAccessibilityElement:(UIAccessibilityElement **)element view:(out UIView **)view withIdentifier:(NSString *)identifier tappable:(BOOL)mustBeTappable;
+</code></pre><h5 id="测试刷新"><a href="#测试刷新" class="headerlink" title="测试刷新"></a>测试刷新</h5><ul>
+<li>- (void)pullToRefreshViewWithAccessibilityLabel:(NSString *)label pullDownDuration:(KIFPullToRefreshTiming) pullDownDuration;</li>
+</ul>
+<p>eg.</p>
+<pre><code>[tester pullToRefreshViewWithAccessibilityLabel:@&quot;TableView&quot; pullDownDuration:KIFPullToRefreshInAboutOneSecond];
+</code></pre><h5 id="测试滑动"><a href="#测试滑动" class="headerlink" title="测试滑动"></a>测试滑动</h5><p>horizontalFraction:水平方向 verticalFraction:垂直方向<br>数值为-1~1，越接近0，速度越慢</p>
+<ul>
+<li>- (void)scrollViewWithAccessibilityIdentifier:(NSString *)identifier byFractionOfSizeHorizontal:(CGFloat)horizontalFraction vertical:(CGFloat)verticalFraction;</li>
+</ul>
+<p>eg.</p>
+<pre><code>[tester scrollViewWithAccessibilityIdentifier:@&quot;TableView&quot; byFractionOfSizeHorizontal:0 vertical:-0.2];
+</code></pre><h5 id="cell左滑删除"><a href="#cell左滑删除" class="headerlink" title="cell左滑删除"></a>cell左滑删除</h5><ul>
+<li>- (void)swipeViewWithAccessibilityLabel:(NSString *)label inDirection:(KIFSwipeDirection)direction;</li>
+</ul>
+<p>eg.</p>
+<pre><code>[tester swipeViewWithAccessibilityLabel:@&quot;Section 0 Row 0&quot; inDirection:KIFSwipeDirectionLeft];
+[tester tapViewWithAccessibilityLabel:@&quot;Delete&quot;];
+</code></pre><h4 id="slider设值"><a href="#slider设值" class="headerlink" title="slider设值"></a>slider设值</h4><ul>
+<li>- (void)setValue:(float)value forSliderWithAccessibilityLabel:(NSString *)label;</li>
+</ul>
+<p>eg.</p>
+<pre><code>[tester setValue:2 forSliderWithAccessibilityLabel:@&quot;Slider&quot;];
+</code></pre><h4 id="switch开关"><a href="#switch开关" class="headerlink" title="switch开关"></a>switch开关</h4><ul>
+<li>- (void)setOn:(BOOL)switchIsOn forSwitchWithAccessibilityLabel:(NSString *)label;</li>
+</ul>
+<p>eg.</p>
+<pre><code>[tester setOn:NO forSwitchWithAccessibilityLabel:@&quot;Switch&quot;];
+</code></pre><h4 id="picker"><a href="#picker" class="headerlink" title="picker"></a>picker</h4><ul>
+<li>- (void)selectPickerViewRowWithTitle:(NSString *)title;</li>
+</ul>
+<p>eg.</p>
+<pre><code>[tester selectPickerViewRowWithTitle:@&quot;Charlie&quot;];
+</code></pre><h4 id="文本输入"><a href="#文本输入" class="headerlink" title="文本输入"></a>文本输入</h4><ul>
+<li>- (void)enterText:(NSString <em>)text intoViewWithAccessibilityLabel:(NSString </em>)label;</li>
+</ul>
+<p>eg.</p>
+<pre><code>[tester enterText:@&quot;内容&quot; intoViewWithAccessibilityLabel:@&quot;TextField&quot;];
+</code></pre><h4 id="等待视图出现"><a href="#等待视图出现" class="headerlink" title="等待视图出现"></a>等待视图出现</h4><ul>
+<li>- (UIView <em>)waitForViewWithAccessibilityLabel:(NSString </em>)label;</li>
+</ul>
+<p>eg.</p>
+<pre><code>[tester waitForViewWithAccessibilityLabel:@&quot;TextField&quot;];
+</code></pre><h4 id="访问权限允许"><a href="#访问权限允许" class="headerlink" title="访问权限允许"></a>访问权限允许</h4><ul>
+<li>- (BOOL)acknowledgeSystemAlert;</li>
+</ul>
+<h4 id="延时"><a href="#延时" class="headerlink" title="延时"></a>延时</h4><ul>
+<li>- (void)waitForTimeInterval:(NSTimeInterval)timeInterval;</li>
+</ul>
+<p>eg.</p>
+<pre><code>[tester waitForTimeInterval:3.0f];
+</code></pre><h4 id="设置超时时间"><a href="#设置超时时间" class="headerlink" title="设置超时时间"></a>设置超时时间</h4><ul>
+<li>- (instancetype)usingTimeout:(NSTimeInterval)executionBlockTimeout;</li>
+</ul>
+<p>eg.</p>
+<pre><code>[[tester usingTimeout:20] waitForViewWithAccessibilityLabel:@&quot;TableView&quot;];
+</code></pre>
+          
+        
       
     </div>
 
     <div>
       
-        
-
-      
     </div>
 
     <div>
-      
-        
-
       
     </div>
 
@@ -335,34 +436,19 @@
       
 
       
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/02/07/KIF基础使用/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-          </div>
-        </div>
-      
 
       
+      
+        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+  
 
           
           </div>
@@ -370,10 +456,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
-
 
         </div>
         
@@ -407,7 +489,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">1</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -542,10 +624,6 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
-
-
 
   
 
@@ -577,10 +655,6 @@
 
   
 
-  
-      <!-- UY BEGIN -->
-      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid="></script>
-      <!-- UY END -->
   
 
 
