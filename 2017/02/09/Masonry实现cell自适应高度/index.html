@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="夜间模式实现," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -84,39 +84,40 @@
 
 
 
-<meta name="description" content="项目新增夜间模式，实现的方法有很多，在这里记录一下我的实现方法
-创建plist文件command+N –&amp;gt; Property List
-该文件我命名为ThemeMode，最终的到ThemeMode.plist文件
-然后在plist文件中添加如下内容，key为色值命名，value为对应色值
+<meta name="description" content="此处不介绍Masonry的导入及使用，下面是Masonry的github地址
+https://github.com/SnapKit/Masonry
+下面介绍cell自适应高度实现，直接贴代码，重要部分讲解
+ListModel.h文件
+#import &amp;lt;Foundation/Foundation.h&amp;gt;
 
-创建主题管理类这里我创建一个名为ThemeManager的管理类
-直接贴代码
-ThemeManager">
+@interface ListModel : NSObject
+
+@property">
 <meta property="og:type" content="article">
-<meta property="og:title" content="夜间模式实现">
-<meta property="og:url" content="http://yoursite.com/2017/02/08/夜间模式实现/index.html">
+<meta property="og:title" content="Masonry实现cell自适应高度">
+<meta property="og:url" content="http://yoursite.com/2017/02/09/Masonry实现cell自适应高度/index.html">
 <meta property="og:site_name" content="wait_个人博客">
-<meta property="og:description" content="项目新增夜间模式，实现的方法有很多，在这里记录一下我的实现方法
-创建plist文件command+N –&amp;gt; Property List
-该文件我命名为ThemeMode，最终的到ThemeMode.plist文件
-然后在plist文件中添加如下内容，key为色值命名，value为对应色值
+<meta property="og:description" content="此处不介绍Masonry的导入及使用，下面是Masonry的github地址
+https://github.com/SnapKit/Masonry
+下面介绍cell自适应高度实现，直接贴代码，重要部分讲解
+ListModel.h文件
+#import &amp;lt;Foundation/Foundation.h&amp;gt;
 
-创建主题管理类这里我创建一个名为ThemeManager的管理类
-直接贴代码
-ThemeManager">
-<meta property="og:image" content="http://wx4.sinaimg.cn/orj360/00665x6Xgy1fcj694kfbqj30tm076gmi.jpg">
-<meta property="og:updated_time" content="2017-02-08T10:37:39.000Z">
+@interface ListModel : NSObject
+
+@property">
+<meta property="og:updated_time" content="2017-02-09T07:50:23.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="夜间模式实现">
-<meta name="twitter:description" content="项目新增夜间模式，实现的方法有很多，在这里记录一下我的实现方法
-创建plist文件command+N –&amp;gt; Property List
-该文件我命名为ThemeMode，最终的到ThemeMode.plist文件
-然后在plist文件中添加如下内容，key为色值命名，value为对应色值
+<meta name="twitter:title" content="Masonry实现cell自适应高度">
+<meta name="twitter:description" content="此处不介绍Masonry的导入及使用，下面是Masonry的github地址
+https://github.com/SnapKit/Masonry
+下面介绍cell自适应高度实现，直接贴代码，重要部分讲解
+ListModel.h文件
+#import &amp;lt;Foundation/Foundation.h&amp;gt;
 
-创建主题管理类这里我创建一个名为ThemeManager的管理类
-直接贴代码
-ThemeManager">
-<meta name="twitter:image" content="http://wx4.sinaimg.cn/orj360/00665x6Xgy1fcj694kfbqj30tm076gmi.jpg">
+@interface ListModel : NSObject
+
+@property">
 
 
 
@@ -144,13 +145,13 @@ ThemeManager">
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/02/08/夜间模式实现/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/02/09/Masonry实现cell自适应高度/"/>
 
 
 
 
 
-  <title> 夜间模式实现 | wait_个人博客 </title>
+  <title> Masonry实现cell自适应高度 | wait_个人博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -263,7 +264,7 @@ ThemeManager">
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/08/夜间模式实现/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/09/Masonry实现cell自适应高度/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="wait_">
@@ -287,7 +288,7 @@ ThemeManager">
             
             
               
-                夜间模式实现
+                Masonry实现cell自适应高度
               
             
           </h1>
@@ -302,8 +303,8 @@ ThemeManager">
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-08T18:15:05+08:00">
-                2017-02-08
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-09T12:07:13+08:00">
+                2017-02-09
               </time>
             
 
@@ -338,76 +339,168 @@ ThemeManager">
       
 
       
-        <p>项目新增夜间模式，实现的方法有很多，在这里记录一下我的实现方法</p>
-<h4 id="创建plist文件"><a href="#创建plist文件" class="headerlink" title="创建plist文件"></a>创建plist文件</h4><p>command+N –&gt; Property List</p>
-<p>该文件我命名为ThemeMode，最终的到ThemeMode.plist文件</p>
-<p>然后在plist文件中添加如下内容，key为色值命名，value为对应色值</p>
-<p><img src="http://wx4.sinaimg.cn/orj360/00665x6Xgy1fcj694kfbqj30tm076gmi.jpg" alt=""></p>
-<h4 id="创建主题管理类"><a href="#创建主题管理类" class="headerlink" title="创建主题管理类"></a>创建主题管理类</h4><p>这里我创建一个名为ThemeManager的管理类</p>
-<p>直接贴代码</p>
-<p>ThemeManager.h文件</p>
+        <p>此处不介绍Masonry的导入及使用，下面是Masonry的github地址</p>
+<p><a href="https://github.com/SnapKit/Masonry" target="_blank" rel="external"><strong>https://github.com/SnapKit/Masonry</strong></a></p>
+<p>下面介绍cell自适应高度实现，直接贴代码，重要部分讲解</p>
+<p>ListModel.h文件</p>
 <pre><code>#import &lt;Foundation/Foundation.h&gt;
 
-@interface ThemeManager : NSObject
+@interface ListModel : NSObject
 
-@property (nonatomic, strong) NSDictionary *themeData;
-
-+ (instancetype)sharedThemeManager;
-
-- (void)setThemeMode:(BOOL)isLight;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *time;
 
 @end
-</code></pre><p>ThemeManager.m文件</p>
-<pre><code>#import &quot;ThemeManager.h&quot;
-#import &quot;UserDefaultKeys.h&quot;
+</code></pre><p>ListModel.m文件</p>
+<pre><code>#import &quot;ListModel.h&quot;
 
-@implementation ThemeManager
+@implementation ListModel
 
-//读取plist文件
-- (NSDictionary *)themeData
+@end
+</code></pre><hr>
+<p>ListCell.h文件</p>
+<pre><code>#import &lt;UIKit/UIKit.h&gt;
+#import &quot;ListModel.h&quot;
+
+static NSString *identifier = @&quot;listCell&quot;;
+
+@interface ListCell : UITableViewCell
+
+@property (nonatomic, strong) ListModel *model;
+
+@end
+</code></pre><p>ListCell.m文件</p>
+<pre><code>#import &quot;ListCell.h&quot;
+#import &quot;View+MASAdditions.h&quot;
+
+@interface ListCell()
+
+@property (nonatomic, strong) UILabel *titleLb;
+@property (nonatomic, strong) UILabel *timeLb;
+
+@end
+
+@implementation ListCell
+
+#pragma mark - lazy load
+- (UILabel *)titleLb
 {
-    if (!_themeData)
+    if (!_titleLb)
     {
-        NSString *plistPath = [[NSBundle mainBundle] pathForResource:@&quot;ThemeMode&quot; ofType:@&quot;plist&quot;];
-        NSDictionary *data = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
-        //获取当前主题下所有key和value
-        _themeData = [data objectForKey:[kUserDefault objectForKey:kThemeMode]];
+        _titleLb = [[UILabel alloc] init];
+        _titleLb.numberOfLines = 0;
+        [self.contentView addSubview:_titleLb];
     }
 
-    return _themeData;
+    return _titleLb;
 }
 
-//单例
-+ (instancetype)sharedThemeManager
+- (UILabel *)timeLb
 {
-    static ThemeManager *themeManager = nil;
-    static dispatch_once_t oncePredicate;
-    dispatch_once(&amp;oncePredicate, ^{
-        themeManager = [[self alloc] init];
-    });
+    if (!_timeLb)
+    {
+        _timeLb = [[UILabel alloc] init];
+        _timeLb.numberOfLines = 0;
+        [self.contentView addSubview:_timeLb];
+    }
 
-    return themeManager;
+    return _timeLb;
 }
 
-//设置主题
-- (void)setThemeMode:(BOOL)isLight
+#pragma mark - set
+- (void)setModel:(ListModel *)model
 {
-    [kUserDefault setObject:isLight ? @&quot;Light&quot; : @&quot;Dark&quot; forKey:kThemeMode];
-    self.themeData = nil;
+    _model = model;
+
+    self.titleLb.text = _model.title;
+    self.timeLb.text = _model.time;
+
+    [_titleLb mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.equalTo(self.contentView).offset(10);
+        make.right.equalTo(self.contentView).offset(-10);
+    }];
+
+    [_timeLb mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_titleLb.mas_bottom).offset(10);
+        make.left.equalTo(self.contentView).offset(10);
+        make.right.bottom.equalTo(self.contentView).offset(-10);
+    }];
 }
 
 @end
-</code></pre><h4 id="扩展UIColor"><a href="#扩展UIColor" class="headerlink" title="扩展UIColor"></a>扩展UIColor</h4><p>在扩展UIColor的文件里，编写方法如</p>
-<pre><code>+ (UIColor *)titleColor
+</code></pre><p>重点：</p>
+<p>自定义cell时，要设置cell里最上方控件与cell.contentView上方的距离，最下方控件与cell.contentView下方的距离，各控件间距离</p>
+<p>如上，</p>
+<p>titleLb与cell.contentView的上方距离为10</p>
+<p>timeLb与cell.contentView的下方距离为10</p>
+<p>titleLb与timeLb直接距离为10</p>
+<hr>
+<p>ViewController.h文件</p>
+<pre><code>#import &lt;UIKit/UIKit.h&gt;
+
+@interface ViewController : UIViewController
+
+@end
+</code></pre><p>ViewController.m文件</p>
+<pre><code>#import &quot;ViewController.h&quot;
+#import &quot;ListModel.h&quot;
+#import &quot;ListCell.h&quot;
+#import &quot;View+MASAdditions.h&quot;
+
+@interface ViewController ()&lt;UITableViewDelegate, UITableViewDataSource&gt;
 {
-    //获取对应色值
-    NSString *hexValueStr = [[ThemeManager sharedThemeManager].themeData objectForKey:@&quot;Title&quot;];
-    return [self colorWithHexColorString:hexValueStr];
+    UITableView *listTableView;
+    NSMutableArray *dataArray;
 }
-</code></pre><p>其中key对应plist文件的key</p>
-<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>直接调用UIColor的扩展方法即可<br>eg.</p>
-<pre><code>titleLabel.textColor = [UIColor titleColor];
-</code></pre>
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+
+    NSArray *titles = @[@&quot;跑步与不跑步的人，在1天、1月甚至1年来看都没什么了不起的差距；但在每5年来看的时候，就是身体和精神状态的巨大分野；等到了10年再看的时候，也许就是一种人生对另一种人生不可企及的鸿沟。&quot;,@&quot;读过的书不会成为过眼烟云，它们会潜在气质里、在谈吐上、在胸襟的无涯，当然也可能显露在生活和文字中。&quot;,@&quot;而定投和跑步、读书一样，都是人生中最简单却又最美好的事情。&quot;,@&quot;彼得·林奇曾说：投资者如果能够不为经济形式焦虑，不看重市场状况，只是按照固定的计划进行投资，其成绩往往好于那些成天研究，试图预测市场并据此买卖&quot;];
+    dataArray = [NSMutableArray array];
+
+    for (int i = 0; i &lt; titles.count; i++)
+    {
+        ListModel *model = [[ListModel alloc] init];
+        model.title = titles[i];
+        model.time = @&quot;2017-02-09&quot;;
+        [dataArray addObject:model];
+    }
+
+    listTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    listTableView.delegate = self;
+    listTableView.dataSource = self;
+    listTableView.estimatedRowHeight = 60;
+    listTableView.rowHeight = UITableViewAutomaticDimension;
+    [listTableView registerClass:[ListCell class] forCellReuseIdentifier:identifier];
+    [self.view addSubview:listTableView];
+    [listTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ListCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    cell.model = dataArray[indexPath.row];
+
+    return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return dataArray.count;
+}
+
+@end
+</code></pre><p>重点：</p>
+<p>设置估算高度，必须加上，否则失效</p>
+<p>listTableView.estimatedRowHeight = 60;</p>
+
       
     </div>
 
@@ -428,19 +521,13 @@ ThemeManager">
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/夜间模式实现/" rel="tag"># 夜间模式实现</a>
-          
-        </div>
-      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/07/KIF基础使用/" rel="next" title="KIF基础使用">
-                <i class="fa fa-chevron-left"></i> KIF基础使用
+              <a href="/2017/02/08/夜间模式实现/" rel="next" title="夜间模式实现">
+                <i class="fa fa-chevron-left"></i> 夜间模式实现
               </a>
             
           </div>
@@ -448,10 +535,6 @@ ThemeManager">
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/09/Masonry实现cell自适应高度/" rel="prev" title="Masonry实现cell自适应高度">
-                Masonry实现cell自适应高度 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -498,17 +581,8 @@ ThemeManager">
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.JPG"
@@ -557,22 +631,6 @@ ThemeManager">
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建plist文件"><span class="nav-number">1.</span> <span class="nav-text">创建plist文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建主题管理类"><span class="nav-number">2.</span> <span class="nav-text">创建主题管理类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#扩展UIColor"><span class="nav-number">3.</span> <span class="nav-text">扩展UIColor</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用"><span class="nav-number">4.</span> <span class="nav-text">使用</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
     </div>
